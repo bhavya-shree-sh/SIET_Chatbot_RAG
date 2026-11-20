@@ -16,10 +16,9 @@ st.title(
 )
 
 st.caption(
-    "Ask anything about College Information, Courses, FAQs, Rules and Regulations, and Placements."
+    "Ask anything about College Information, Courses."
 )
 
-st.caption("RAG Pipeline with Multiple PDF Files")
 
 st.caption("Created by BHAVYASHREE S H")
 
