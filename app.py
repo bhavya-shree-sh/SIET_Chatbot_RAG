@@ -1,5 +1,4 @@
 import streamlit as st
-
 from rag_engine import load_base, ask_rag
 
 
@@ -28,7 +27,8 @@ st.caption("Created by BHAVYASHREE S H")
 # Get Groq API key
 try:
     mykey = st.secrets["GROQ_API_KEY"]
-except Exception:
+
+except KeyError:
     st.error("Groq API key not found in Streamlit Secrets.")
     st.stop()
 
@@ -40,7 +40,8 @@ def initiate_rag():
 
 
 try:
-    index, embed_model, chunks = initiate_rag()
+    with st.spinner("Loading College Knowledge Base..."):
+        index, embed_model, chunks = initiate_rag()
 
     st.success("College Knowledge Base Loaded Successfully!")
 
@@ -70,12 +71,10 @@ question = st.chat_input(
 # Generate answer
 if question:
 
-    st.session_state.chat_hist.append(
-        {
-            "role": "user",
-            "content": question
-        }
-    )
+    st.session_state.chat_hist.append({
+        "role": "user",
+        "content": question
+    })
 
     with st.chat_message("user"):
         st.write(question)
@@ -95,12 +94,10 @@ if question:
 
                 st.write(answer)
 
-                st.session_state.chat_hist.append(
-                    {
-                        "role": "assistant",
-                        "content": answer
-                    }
-                )
+                st.session_state.chat_hist.append({
+                    "role": "assistant",
+                    "content": answer
+                })
 
             except Exception as e:
                 st.error(f"Error generating answer: {e}")
