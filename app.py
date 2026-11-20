@@ -23,7 +23,7 @@ question = st.chat_inout("Ask anything about SIET college.........")
 
 if question:
   st.session_sate.chat_hist.append(
-    {"role" : "user", "content" = question})
+    {"role" : "user", "content" = "question"})
   with st.chat_message("user"):
     st.write(question)
 
@@ -31,6 +31,8 @@ if question:
     with st.spinner("Asking RAG for answer....."):
       answer = ask_rag (question, embed_model, chunks, index, api_key = mykey , num_chunks)
       st.write(answer)
+       st.session.state.char_hist.append(
+         {"role":"assistent", "content" :answer})
 
 
 if st.button("Clear chat"):
