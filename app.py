@@ -6,7 +6,7 @@ st.caption("Ask anything about the College Information, Courses,FAQs,Rules and r
 st.caption("RAG Pipeline with multiple files")
 st.caption("Created by LIKHITHA SK")
 
-mykey=st.secrets["GROQ_API_KEYS"]
+mykey=st.secrets["GROQ_API_KEY"]
 
 @st.cache_resource
 def initiate_rag():
